@@ -70,7 +70,6 @@ $(document).ready(function() {
     $('.addPizza').addClass('hidden');
     $('.finish').addClass('hidden');
     $('.output').addClass('hidden');
-    $('.remove').addClass('hidden');
     $('.formTopping').removeClass('hidden');
     newOrder.addPizza(id);
     id += 1;
@@ -99,7 +98,6 @@ $(document).ready(function() {
     $('.addPizza').removeClass('hidden');
     $('.finish').removeClass('hidden');
     $('.output').removeClass('hidden');
-    $('.remove').removeClass('hidden');
     // did the user get a drink?
     newOrder.pizzas[newOrder.currentPizza].drink = $('input:radio[name=drink]:checked').val()
     // current total
