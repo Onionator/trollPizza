@@ -7,7 +7,7 @@ function Order() {
 }
 
 // pizza object. pass it the user's name so we know who's order it is
-function Pizza() {
+function Pizza(id) {
   // array of meat toppings
   this.meatToppings = [],
   // array of other toppings
@@ -19,11 +19,13 @@ function Pizza() {
   // cost
   this.cost = 0,
   // keep track of how many pizzas
-  this.id = 0;
+  this.id = id;
+  // update the currentPizza
+  newOrder.currentPizza = id;
 }
 
-Order.prototype.addPizza = function() {
-  var newPizza = new Pizza();
+Order.prototype.addPizza = function(id) {
+  var newPizza = new Pizza(id);
   $(newOrder.pizzas.push(newPizza));
 }
 
@@ -32,6 +34,7 @@ Order.prototype.addPizza = function() {
 
 // cost calculator
 Pizza.prototype.totalPizzaCost = function() {
+  console.log('pizza ' + this.id + ' costs ' + this.cost + ' before adding add the costs together.');
   // size toppingChoices
   var sizeChoices = ['small', 'medium', 'large', 'XL']
   var sizes = [5, 7, 9, 11];
@@ -55,17 +58,12 @@ Pizza.prototype.totalPizzaCost = function() {
   if (this.drink !== 'no drink') {
     this.cost += 2;
   }
+  console.log('pizza ' + this.id + ' costs ' + this.cost + ' after adding add the costs.');
 }
 
-Pizza.prototype.addTopping = function() {
-  //topping choices
-  var toppingChoicesMeat = ['anchovies', 'bacon', 'chicken',  'hamburger', 'pepperoni', 'sauasage'];
-  var toppingChoicesOther = ['green peppers', 'red onion', 'mushrooms', 'olives',];
-  // determine which type of topping it is
-  topping
-}
 var newOrder = new Order();
 $(document).ready(function() {
+  var id = 0;
   // starts a new order
   $('#startOrder').click(function() {
     $('.addPizza').removeClass('hidden');
@@ -74,8 +72,11 @@ $(document).ready(function() {
   // adds a new pizza to the order
   $('#addPizza').click(function() {
     $('.addPizza').addClass('hidden');
+    $('.finish').addClass('hidden');
     $('.formTopping').removeClass('hidden');
-    newOrder.addPizza();
+    newOrder.addPizza(id);
+    id += 1;
+    console.log('we are currently working on pizza ' + newOrder.currentPizza);
   })
   // allows user to choose toppings for his pizza
   $('#toppings').click(function() {
@@ -101,10 +102,12 @@ $(document).ready(function() {
       // did the user get a drink?
       newOrder.pizzas[newOrder.currentPizza].drink = $('input:radio[name=drink]:checked').val()
       // current total
+      console.log("before cost");
       newOrder.pizzas[newOrder.currentPizza].totalPizzaCost();
+      console.log("after cost");
       newOrder.total += newOrder.pizzas[newOrder.currentPizza].cost;
       $('h1').text('$' + newOrder.total);
-    })
+    });
     $('#finish').click(function() {
       $('h1').text('$' + newOrder.total + ' is your total today.');
     })
