@@ -62,8 +62,11 @@ $(document).ready(function() {
   var id = 0;
   // starts a new order
   $('#startOrder').off().click(function() {
-    $('.addPizza').removeClass('hidden');
+    $('.formTopping').removeClass('hidden');
     $('.startOrder').addClass('hidden');
+    newOrder.addPizza(id);
+    id += 1;
+    console.log('we are currently working on pizza ' + newOrder.currentPizza);
   })
   // adds a new pizza to the order
   $('#addPizza').off().click(function() {
@@ -107,10 +110,6 @@ $(document).ready(function() {
     $('#output').html('$' + newOrder.total + ' is current total today.')
     $('#displayPizza').append('<li>$' + newOrder.pizzas[newOrder.currentPizza].cost + ' ' + newOrder.pizzas[newOrder.currentPizza].size + ' pizza with ' + newOrder.pizzas[newOrder.currentPizza].meatToppings.join(', ') + ', ' + newOrder.pizzas[newOrder.currentPizza].otherToppings.join(', ') + ' and ' + newOrder.pizzas[newOrder.currentPizza].drink + '.</li>');
   });
-  // $('ol').off().on('click', function() {
-  //   console.log($(this).val());
-  //   newOrder.remove(this);
-  // })
   $('#finish').off().click(function() {
     $('.addPizza').addClass('hidden');
     $('.finish').addClass('hidden');
