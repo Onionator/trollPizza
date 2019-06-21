@@ -14,6 +14,8 @@ function Pizza() {
   this.otherToppings = [],
   // size
   this.size = '',
+  // drink
+  this.drink = '',
   // cost
   this.cost = 0,
   // keep track of how many pizzas
@@ -49,7 +51,10 @@ Pizza.prototype.totalPizzaCost = function() {
     // if the topping is not a meat topping add $1
     this.cost += 1;
   };
-  console.log(this.cost);
+  // what drink did the user get
+  if (this.drink !== 'no drink') {
+    this.cost += 2;
+  }
 }
 
 Pizza.prototype.addTopping = function() {
@@ -61,23 +66,47 @@ Pizza.prototype.addTopping = function() {
 }
 var newOrder = new Order();
 $(document).ready(function() {
+  // starts a new order
+  $('#startOrder').click(function() {
+    $('.addPizza').removeClass('hidden');
+    $('.startOrder').addClass('hidden');
+  })
+  // adds a new pizza to the order
   $('#addPizza').click(function() {
+    $('.addPizza').addClass('hidden');
+    $('.formTopping').removeClass('hidden');
     newOrder.addPizza();
   })
+  // allows user to choose toppings for his pizza
   $('#toppings').click(function() {
+    $('.formTopping').addClass('hidden');
+    $('.formSize').removeClass('hidden');
     $('input:checkbox[name=meatTopping]:checked').each(function() {
       newOrder.pizzas[newOrder.currentPizza].meatToppings.push($(this).val());
     })
     $('input:checkbox[name=otherTopping]:checked').each(function() {
       newOrder.pizzas[newOrder.currentPizza].otherToppings.push($(this).val());
     })
+    // allows user to choose a size for his pizza
     $('#chooseSize').click(function() {
-      newOrder.pizzas[newOrder.currentPizza].size = ($(this).val());
+      $('.formSize').addClass('hidden');
+      $('.drinkOption').removeClass('hidden');
+      //records this size
+      newOrder.pizzas[newOrder.currentPizza].size = $('input:radio[name=size]:checked').val();
     })
-    $('#finish').click(function() {
+    $('#drinkOption').click(function() {
+      $('.drinkOption').addClass('hidden');
+      $('.addPizza').removeClass('hidden');
+      $('.finish').removeClass('hidden');
+      // did the user get a drink?
+      newOrder.pizzas[newOrder.currentPizza].drink = $('input:radio[name=drink]:checked').val()
+      // current total
       newOrder.pizzas[newOrder.currentPizza].totalPizzaCost();
       newOrder.total += newOrder.pizzas[newOrder.currentPizza].cost;
-      $('h1').text(newOrder.total);
+      $('h1').text('$' + newOrder.total);
+    })
+    $('#finish').click(function() {
+      $('h1').text('$' + newOrder.total + ' is your total today.');
     })
   })
 })

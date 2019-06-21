@@ -1,50 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <link rel="stylesheet" href="css/styles.css" type="text/css">
-    <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<head>
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <div class="startOrder">
     <button type="button" name="button" id="startOrder">Start Order</button>
+  </div>
+  <div class="addPizza hidden" >
     <button type="button" name="button" id="addPizza">Add a Pizza</button>
-    <form class="formTopping">
-      <input type="checkbox" name="meatTopping" value="anchovies">
-      <label for="topping">Anchovies</label><br>
-      <input type="checkbox" name="meatTopping" value="bacon">
-      <label for="topping">Bacon</label><br>
-      <input type="checkbox" name="meatTopping" value="chicken">
-      <label for="topping">Chicken</label><br>
-      <input type="checkbox" name="meatTopping" value="hamburger">
-      <label for="topping">Hamburger</label><br>
-      <input type="checkbox" name="meatTopping" value="pepperoni">
-      <label for="topping">Pepperoni</label><br>
-      <input type="checkbox" name="meatTopping" value="sauasage">
-      <label for="topping">Sauasage</label><br>
-      <input type="checkbox" name="otherTopping" value="green peppers">
-      <label for="topping">Green Peppers</label><br>
-      <input type="checkbox" name="otherTopping" value="red onion">
-      <label for="topping">Red Onion</label><br>
-      <input type="checkbox" name="otherTopping" value="mushrooms">
-      <label for="topping">Mushrooms</label><br>
-      <input type="checkbox" name="otherTopping" value="olives">
-      <label for="topping">Olives</label><br>
-      <button type="button" name="button" id="toppings">Add Toppings</button>
-    </form>
-    <form class="formSize">
-      <input type="checkbox" name="meatTopping" value="small">
-      <label for="topping">Small</label><br>
-      <input type="checkbox" name="meatTopping" value="medium">
-      <label for="topping">Medium</label><br>
-      <input type="checkbox" name="meatTopping" value="large">
-      <label for="topping">Large</label><br>
-      <input type="checkbox" name="meatTopping" value="XL">
-      <label for="topping">XL</label><br>
-      <button type="button" name="button" id="chooseSize">Set Size</button>
-    </form>
+  </div>
+  <form class="formTopping hidden">
+    <h2>Meat Toppings are $2 each</h2>
+    <input type="checkbox" name="meatTopping" value="anchovies">
+    <label for="topping">Anchovies</label><br>
+    <input type="checkbox" name="meatTopping" value="bacon">
+    <label for="topping">Bacon</label><br>
+    <input type="checkbox" name="meatTopping" value="chicken">
+    <label for="topping">Chicken</label><br>
+    <input type="checkbox" name="meatTopping" value="hamburger">
+    <label for="topping">Hamburger</label><br>
+    <input type="checkbox" name="meatTopping" value="pepperoni">
+    <label for="topping">Pepperoni</label><br>
+    <input type="checkbox" name="meatTopping" value="sauasage">
+    <label for="topping">Sauasage</label><br>
+    <h2>Other Toppings are $1 each</h2>
+    <input type="checkbox" name="otherTopping" value="green peppers">
+    <label for="topping">Green Peppers</label><br>
+    <input type="checkbox" name="otherTopping" value="red onion">
+    <label for="topping">Red Onion</label><br>
+    <input type="checkbox" name="otherTopping" value="mushrooms">
+    <label for="topping">Mushrooms</label><br>
+    <input type="checkbox" name="otherTopping" value="olives">
+    <label for="topping">Olives</label><br>
+    <button type="button" name="button" id="toppings">Add Toppings</button>
+  </form>
+  <form class="formSize hidden">
+    <input type="radio" name="size" value="small">
+    <label for="topping">Small 8" - $5</label><br>
+    <input type="radio" name="size" value="medium">
+    <label for="topping">Medium 12" - $7</label><br>
+    <input type="radio" name="size" value="large">
+    <label for="topping">Large 14" - $9</label><br>
+    <input type="radio" name="size" value="XL">
+    <label for="topping">XL 16" - $11</label><br>
+    <button type="button" name="button" id="chooseSize">Set Size</button>
+  </form>
+  <form class="drinkOption hidden">
+    <h2>Get 2 liters of soda fuel your caffeine addiction for just $2!</h2>
+    <input type="radio" name="drink" value="dr. caffeine">
+    <label for="topping">Dr. caffeine</label><br>
+    <input type="radio" name="drink" value="coffee cola">
+    <label for="topping">Coffee Cola</label><br>
+    <input type="radio" name="drink" value="heartstopper extreme">
+    <label for="topping">Heartstopper Extreme</label><br>
+    <input type="radio" name="drink" value="blue drink">
+    <label for="topping">Blue Drink</label><br>
+    <input type="radio" name="drink" value="no drink">
+    <label for="topping">No Drink</label><br>
+    <button type="button" name="button" id="drinkOption">Add Drink</button>
+  </form>
+  <div class="finish hidden">
     <button type="button" name="button" id="finish">Finish Order</button>
     <h1></h1>
-  </body>
+  </div>
+</body>
 </html>
