@@ -34,7 +34,6 @@ Order.prototype.addPizza = function(id) {
 
 // cost calculator
 Pizza.prototype.totalPizzaCost = function() {
-  console.log('pizza ' + this.id + ' costs ' + this.cost + ' before adding add the costs together.');
   // size toppingChoices
   var sizeChoices = ['small', 'medium', 'large', 'XL']
   var sizes = [5, 7, 9, 11];
@@ -58,19 +57,19 @@ Pizza.prototype.totalPizzaCost = function() {
   if (this.drink !== 'no drink') {
     this.cost += 2;
   }
-  console.log('pizza ' + this.id + ' costs ' + this.cost + ' after adding add the costs.');
+  console.log('pizza ' + this.id + ' costs ' + this.cost + ' after adding the costs together.');
 }
 
 var newOrder = new Order();
 $(document).ready(function() {
   var id = 0;
   // starts a new order
-  $('#startOrder').click(function() {
+  $('#startOrder').off().click(function() {
     $('.addPizza').removeClass('hidden');
     $('.startOrder').addClass('hidden');
   })
   // adds a new pizza to the order
-  $('#addPizza').click(function() {
+  $('#addPizza').off().click(function() {
     $('.addPizza').addClass('hidden');
     $('.finish').addClass('hidden');
     $('.formTopping').removeClass('hidden');
@@ -79,7 +78,7 @@ $(document).ready(function() {
     console.log('we are currently working on pizza ' + newOrder.currentPizza);
   })
   // allows user to choose toppings for his pizza
-  $('#toppings').click(function() {
+  $('#toppings').off().click(function() {
     $('.formTopping').addClass('hidden');
     $('.formSize').removeClass('hidden');
     $('input:checkbox[name=meatTopping]:checked').each(function() {
@@ -89,27 +88,35 @@ $(document).ready(function() {
       newOrder.pizzas[newOrder.currentPizza].otherToppings.push($(this).val());
     })
     // allows user to choose a size for his pizza
-    $('#chooseSize').click(function() {
+    $('#chooseSize').off().click(function() {
       $('.formSize').addClass('hidden');
       $('.drinkOption').removeClass('hidden');
       //records this size
       newOrder.pizzas[newOrder.currentPizza].size = $('input:radio[name=size]:checked').val();
     })
-    $('#drinkOption').click(function() {
+    $('#drinkOption').off().click(function() {
+      event.preventDefault();
       $('.drinkOption').addClass('hidden');
       $('.addPizza').removeClass('hidden');
       $('.finish').removeClass('hidden');
       // did the user get a drink?
       newOrder.pizzas[newOrder.currentPizza].drink = $('input:radio[name=drink]:checked').val()
       // current total
-      console.log("before cost");
       newOrder.pizzas[newOrder.currentPizza].totalPizzaCost();
-      console.log("after cost");
       newOrder.total += newOrder.pizzas[newOrder.currentPizza].cost;
-      $('h1').text('$' + newOrder.total);
+      //output the order for the customer
+      for (var i = 0; i < newOrder.pizzas.length; i++) {
+      $('h1').html('$' + newOrder.total + ' is current total today.')
+      $('#displayPizza').html('<li>' + newOrder.pizzas[i].size + ' pizza with ' + newOrder.pizzas[i].meatToppings.join(', ') + ', ' + newOrder.pizzas[i].otherToppings.join(', ') + ' and ' + newOrder.pizzas[i].drink + '.</li>');
+    }
     });
     $('#finish').click(function() {
-      $('h1').text('$' + newOrder.total + ' is your total today.');
+      $('.addPizza').addClass('hidden');
+      $('.finish').addClass('hidden');
+      $('h1').text('Thank you for your order. $' + newOrder.total + ' is your total today.');
+      for (var i = 0; i < newOrder.pizzas.length; i++) {
+      $('#displayPizza').html('<li>' + newOrder.pizzas[i].size + ' pizza with ' + newOrder.pizzas[i].meatToppings.join(', ') + ', ' + newOrder.pizzas[i].otherToppings.join(', ') + ' and ' + newOrder.pizzas[i].drink + '.</li>');
+    }
     })
   })
 })
