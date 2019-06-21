@@ -29,9 +29,6 @@ Order.prototype.addPizza = function(id) {
   $(newOrder.pizzas.push(newPizza));
 }
 
-
-
-
 // cost calculator
 Pizza.prototype.totalPizzaCost = function() {
   // size toppingChoices
@@ -72,6 +69,8 @@ $(document).ready(function() {
   $('#addPizza').off().click(function() {
     $('.addPizza').addClass('hidden');
     $('.finish').addClass('hidden');
+    $('.output').addClass('hidden');
+    $('.remove').addClass('hidden');
     $('.formTopping').removeClass('hidden');
     newOrder.addPizza(id);
     id += 1;
@@ -87,36 +86,38 @@ $(document).ready(function() {
     $('input:checkbox[name=otherTopping]:checked').each(function() {
       newOrder.pizzas[newOrder.currentPizza].otherToppings.push($(this).val());
     })
-    // allows user to choose a size for his pizza
-    $('#chooseSize').off().click(function() {
-      $('.formSize').addClass('hidden');
-      $('.drinkOption').removeClass('hidden');
-      //records this size
-      newOrder.pizzas[newOrder.currentPizza].size = $('input:radio[name=size]:checked').val();
-    })
-    $('#drinkOption').off().click(function() {
-      event.preventDefault();
-      $('.drinkOption').addClass('hidden');
-      $('.addPizza').removeClass('hidden');
-      $('.finish').removeClass('hidden');
-      // did the user get a drink?
-      newOrder.pizzas[newOrder.currentPizza].drink = $('input:radio[name=drink]:checked').val()
-      // current total
-      newOrder.pizzas[newOrder.currentPizza].totalPizzaCost();
-      newOrder.total += newOrder.pizzas[newOrder.currentPizza].cost;
-      //output the order for the customer
-      for (var i = 0; i < newOrder.pizzas.length; i++) {
-      $('h1').html('$' + newOrder.total + ' is current total today.')
-      $('#displayPizza').html('<li>' + newOrder.pizzas[i].size + ' pizza with ' + newOrder.pizzas[i].meatToppings.join(', ') + ', ' + newOrder.pizzas[i].otherToppings.join(', ') + ' and ' + newOrder.pizzas[i].drink + '.</li>');
-    }
-    });
-    $('#finish').click(function() {
-      $('.addPizza').addClass('hidden');
-      $('.finish').addClass('hidden');
-      $('h1').text('Thank you for your order. $' + newOrder.total + ' is your total today.');
-      for (var i = 0; i < newOrder.pizzas.length; i++) {
-      $('#displayPizza').html('<li>' + newOrder.pizzas[i].size + ' pizza with ' + newOrder.pizzas[i].meatToppings.join(', ') + ', ' + newOrder.pizzas[i].otherToppings.join(', ') + ' and ' + newOrder.pizzas[i].drink + '.</li>');
-    }
-    })
   })
+  // allows user to choose a size for his pizza
+  $('#chooseSize').off().click(function() {
+    $('.formSize').addClass('hidden');
+    $('.drinkOption').removeClass('hidden');
+    //records this size
+    newOrder.pizzas[newOrder.currentPizza].size = $('input:radio[name=size]:checked').val();
+  })
+  $('#drinkOption').off().click(function() {
+    $('.drinkOption').addClass('hidden');
+    $('.addPizza').removeClass('hidden');
+    $('.finish').removeClass('hidden');
+    $('.output').removeClass('hidden');
+    $('.remove').removeClass('hidden');
+    // did the user get a drink?
+    newOrder.pizzas[newOrder.currentPizza].drink = $('input:radio[name=drink]:checked').val()
+    // current total
+    newOrder.pizzas[newOrder.currentPizza].totalPizzaCost();
+    newOrder.total += newOrder.pizzas[newOrder.currentPizza].cost;
+    //output the order for the customer
+    $('h1').html('$' + newOrder.total + ' is current total today.')
+    $('#displayPizza').append('<li>$' + newOrder.pizzas[newOrder.currentPizza].cost + ' ' + newOrder.pizzas[newOrder.currentPizza].size + ' pizza with ' + newOrder.pizzas[newOrder.currentPizza].meatToppings.join(', ') + ', ' + newOrder.pizzas[newOrder.currentPizza].otherToppings.join(', ') + ' and ' + newOrder.pizzas[newOrder.currentPizza].drink + '.</li>');
+  });
+  // $('ol').off().on('click', function() {
+  //   console.log($(this).val());
+  //   newOrder.remove(this);
+  // })
+  $('#finish').off().click(function() {
+    $('.addPizza').addClass('hidden');
+    $('.finish').addClass('hidden');
+    $('h1').text('Thank you for your order. $' + newOrder.total + ' is your total today.');
+
+  })
+
 })

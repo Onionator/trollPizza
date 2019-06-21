@@ -40,13 +40,13 @@
     <button type="button" name="button" id="toppings">Add Toppings</button>
   </form>
   <form class="formSize hidden">
-    <input type="radio" name="size" value="small">
+    <input type="radio" name="size" value="small" checked>
     <label for="topping">Small 8" - $5</label><br>
     <input type="radio" name="size" value="medium">
     <label for="topping">Medium 12" - $7</label><br>
     <input type="radio" name="size" value="large">
     <label for="topping">Large 14" - $9</label><br>
-    <input type="radio" name="size" value="XL">
+    <input type="radio" name="size" value="XL" >
     <label for="topping">XL 16" - $11</label><br>
     <button type="button" name="button" id="chooseSize">Set Size</button>
   </form>
@@ -56,19 +56,24 @@
     <label for="topping">Dr. caffeine</label><br>
     <input type="radio" name="drink" value="coffee cola">
     <label for="topping">Coffee Cola</label><br>
-    <input type="radio" name="drink" value="heartstopper extreme">
-    <label for="topping">Heartstopper Extreme</label><br>
+    <input type="radio" name="drink" value="heartstopper extreme energy drink">
+    <label for="topping">Heartstopper Extreme Energy Drink</label><br>
     <input type="radio" name="drink" value="blue drink">
     <label for="topping">Blue Drink</label><br>
-    <input type="radio" name="drink" value="no drink">
+    <input type="radio" name="drink" value="no drink" checked>
     <label for="topping">No Drink</label><br>
     <button type="button" name="button" id="drinkOption">Add Drink</button>
   </form>
+  <div class="remove hidden">
+    <button type="button" name="button" id="remove">Remove Pizza</button>
+  </div>
   <div class="finish hidden">
     <button type="button" name="button" id="finish">Finish Order</button>
   </div>
-  <h1></h1>
-  <ol id="displayPizza">
-  </ol>
+  <div class="output hidden">
+    <h1></h1>
+    <ol id="displayPizza">
+    </ol>
+  </div>
 </body>
 </html>
