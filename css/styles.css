@@ -55,6 +55,16 @@ form {
 .hidden {
   display: none;
 }
+.hidden2 {
+  transition-delay: 8s;
+  opacity: 0;
+}
+.homer {
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition-delay: 8s;
+  background-image: url("../img/giphy.gif");
+}
 #startOrder {
   font-size: 100px;
   padding: 40px;

@@ -113,6 +113,8 @@ $(document).ready(function() {
   $('#finish').off().click(function() {
     $('.addPizza').addClass('hidden');
     $('.finish').addClass('hidden');
+    $('body').addClass('homer');
+    $('.output').addClass('hidden2');
     $('#output').text('Thank you for your order. $' + newOrder.total + ' is your total today.');
 
   })
