@@ -104,7 +104,7 @@ $(document).ready(function() {
     newOrder.pizzas[newOrder.currentPizza].totalPizzaCost();
     newOrder.total += newOrder.pizzas[newOrder.currentPizza].cost;
     //output the order for the customer
-    $('h1').html('$' + newOrder.total + ' is current total today.')
+    $('#output').html('$' + newOrder.total + ' is current total today.')
     $('#displayPizza').append('<li>$' + newOrder.pizzas[newOrder.currentPizza].cost + ' ' + newOrder.pizzas[newOrder.currentPizza].size + ' pizza with ' + newOrder.pizzas[newOrder.currentPizza].meatToppings.join(', ') + ', ' + newOrder.pizzas[newOrder.currentPizza].otherToppings.join(', ') + ' and ' + newOrder.pizzas[newOrder.currentPizza].drink + '.</li>');
   });
   // $('ol').off().on('click', function() {
@@ -114,7 +114,7 @@ $(document).ready(function() {
   $('#finish').off().click(function() {
     $('.addPizza').addClass('hidden');
     $('.finish').addClass('hidden');
-    $('h1').text('Thank you for your order. $' + newOrder.total + ' is your total today.');
+    $('#output').text('Thank you for your order. $' + newOrder.total + ' is your total today.');
 
   })
 

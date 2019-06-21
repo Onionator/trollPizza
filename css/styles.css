@@ -1,3 +1,36 @@
+body {
+  background-image: url("../img/pizza.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+button {
+  font-family: 'Ewert', cursive;
+}
+form {
+  background-color: white;
+  font-size: 30px;
+  text-align: left;
+  padding: 30px;
+  max-width: 800px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.top h1{
+  color: white;
+  font-family: 'Ewert', cursive;
+  font-size: 100px;
+  text-shadow: -5px -5px black;
+}
 .hidden {
   display: none;
+}
+#startOrder {
+  background-color: red;
+  border: 3px solid white;
+  border-radius: 300px;
+  color: white;
+  font-size: 100px;
+  padding: 40px;
 }
